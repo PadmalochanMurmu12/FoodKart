@@ -1,0 +1,12 @@
+# Master Root Ignore
+
+# Block ALL node_modules everywhere
+**/node_modules/
+
+# Block ALL environment files everywhere
+**/.env
+**/.env.*
+!**/.env.example
+
+# OS Files
+.DS_Store
