@@ -13,36 +13,52 @@ const CartDetails = () => {
     const [totalprice, setPrice] = useState(0);
     const [totalquantity, setTotalQuantity] = useState(0);
 
-    // --- LOGIC 1: THE TOAST ENGINE ---
+    // --- LOGIC 1: THE TOAST ENGINE (WITH BFCACHE SUPPORT) ---
     useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const stripeCanceled = queryParams.get('canceled');
-        const manualBack = localStorage.getItem("checkout_pending");
+        const handlePaymentInterruption = () => {
+            const queryParams = new URLSearchParams(location.search);
+            const stripeCanceled = queryParams.get('canceled');
+            const manualBack = localStorage.getItem("checkout_pending");
 
-        console.log("Checking Redirect State:", { stripeCanceled, manualBack });
-
-        if (stripeCanceled === 'true' || manualBack === 'true') {
-            const toastTimeout = setTimeout(() => {
-                toast.error("Payment was interrupted. Your items are still here!", {
-                    icon: '⚠️',
-                    duration: 4000,
-                    position: 'top-center',
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                });
+            if (stripeCanceled === 'true' || manualBack === 'true') {
+                setTimeout(() => {
+                    toast.error("Payment was interrupted. Your items are still here!", {
+                        icon: '⚠️',
+                        duration: 4000,
+                        position: 'top-center',
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        },
+                    });
+                }, 100);
 
                 // CLEANUP
                 localStorage.removeItem("checkout_pending");
-                if (stripeCanceled) {
+                
+                if (stripeCanceled === 'true') {
                     navigate('/cart', { replace: true });
                 }
-            }, 100);
+            }
+        };
 
-            return () => clearTimeout(toastTimeout);
-        }
+        // Trigger 1: Normal React component mount/update
+        handlePaymentInterruption();
+
+        // Trigger 2: Browser Back Button (Page restored from BFCache)
+        const onPageShow = (event) => {
+            if (event.persisted) {
+                console.log("Page restored from BFCache. Checking for pending checkouts...");
+                handlePaymentInterruption();
+            }
+        };
+
+        window.addEventListener('pageshow', onPageShow);
+        
+        return () => {
+            window.removeEventListener('pageshow', onPageShow);
+        };
     }, [location.search, navigate]);
 
     // --- LOGIC 2: CALCULATION ENGINE ---
