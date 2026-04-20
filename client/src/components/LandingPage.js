@@ -10,7 +10,7 @@ const LandingPage = () => {
             {/* The "Not A Nav Link" App Name */}
             <div className="absolute top-0 left-0 w-full p-6 z-20">
                 <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tighter cursor-default">
-                    Foodies <span className="text-emerald-500">🍔</span>
+                    FoodKart <span className="text-emerald-500">🍜</span>
                 </h1>
             </div>
 

@@ -55,7 +55,7 @@ const Home = () => {
                 {/* SDET Hook: Show a message if search finds nothing */}
                 {filteredData.length === 0 ? (
                     <div className="text-center text-slate-500 py-10 text-xl font-bold">
-                        No dishes found matching "{searchQuery}" 🍔
+                        No dishes found matching "{searchQuery}" 🍜
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
