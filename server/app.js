@@ -73,6 +73,6 @@ app.post("/api/create-checkout-session", async(req,res)=>{
 // Cloud hosts (like Render/Heroku) dynamically assign a port. You MUST listen to process.env.PORT.
 const PORT = process.env.PORT || 7000;
 
-app.listen(PORT, ()=>{
+app.listen(PORT, "0.0.0.0",()=>{
     console.log(`======== SERVER STARTED ON PORT ${PORT} ========`);
 });

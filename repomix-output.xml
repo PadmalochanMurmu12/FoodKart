@@ -1,0 +1,1746 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+client/
+  public/
+    apple-touch-icon.png
+    index.html
+    manifest.json
+    robots.txt
+    soup.svg
+  src/
+    components/
+      Cancel.js
+      CardData.js
+      CartDetails.js
+      cartstyle.css
+      Headers.js
+      Home.js
+      LandingPage.js
+      style.css
+      Success.js
+    redux/
+      app/
+        store.js
+      features/
+        cartSlice.js
+    App.css
+    App.js
+    App.test.js
+    index.css
+    index.js
+    logo.svg
+    reportWebVitals.js
+    setupTests.js
+  package.json
+  postcss.config.js
+  README.md
+  tailwind.config.js
+server/
+  app.js
+  package.json
+.gitignore
+package.json
+README.md
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="client/public/manifest.json">
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+</file>
+
+<file path="client/public/robots.txt">
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+</file>
+
+<file path="client/public/soup.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-soup-icon lucide-soup"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 21h10"/><path d="M19.5 12 22 6"/><path d="M16.25 3c.27.1.8.53.75 1.36-.06.83-.93 1.2-1 2.02-.05.78.34 1.24.73 1.62"/><path d="M11.25 3c.27.1.8.53.74 1.36-.05.83-.93 1.2-.98 2.02-.06.78.33 1.24.72 1.62"/><path d="M6.25 3c.27.1.8.53.75 1.36-.06.83-.93 1.2-1 2.02-.05.78.34 1.24.74 1.62"/></svg>
+</file>
+
+<file path="client/src/components/Cancel.js">
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+
+const Cancel = () => {
+    const navigate = useNavigate();
+
+    return (
+        <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center px-4 text-center">
+            <motion.div 
+                animate={{ 
+                    x: [0, -10, 10, -10, 10, 0],
+                    rotate: [0, -5, 5, -5, 5, 0] 
+                }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="w-32 h-32 bg-orange-100 rounded-full flex items-center justify-center mb-8"
+            >
+                <i className="fa-solid fa-circle-exclamation text-5xl text-orange-500"></i>
+            </motion.div>
+            
+            <h1 className="text-3xl font-black text-slate-900 mb-4">Payment Canceled</h1>
+            <p className="text-slate-500 text-lg mb-10 max-w-md">
+                No charges were made. Your cart is still waiting for you if you change your mind!
+            </p>
+
+            <div className="flex gap-4">
+                <button 
+                    onClick={() => navigate('/cart')}
+                    className="bg-white border-2 border-slate-200 text-slate-700 font-bold px-8 py-4 rounded-full hover:bg-slate-100 transition-all"
+                >
+                    Try Again
+                </button>
+                <button 
+                    onClick={() => navigate('/menu')}
+                    className="bg-slate-900 text-white font-bold px-8 py-4 rounded-full hover:shadow-lg transition-all"
+                >
+                    View Menu
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default Cancel;
+</file>
+
+<file path="client/src/components/CardData.js">
+const Cardsdata = [
+    {
+        id: 1,
+        dish: "Butter Chicken with Biryani",
+        imgdata: "https://b.zmtcdn.com/data/pictures/9/18857339/8f53919f1175c08cf0f0371b73704f9b_o2_featured_v2.jpg?output-format=webp",
+        address: "North Indian, Biryani, Mughlai",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: " 1175 + order placed from here recently",
+        price: 350,
+        rating: "3.8",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+        qnty:0
+    },
+    {
+        id: 2,
+        dish: "Vada Pav",
+        imgdata: "https://b.zmtcdn.com/data/pictures/chains/5/19295245/089cbcf1d3307542c72f77272556b28b_o2_featured_v2.jpg?output-format=webp",
+        address: "Street Food",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: " 2525 + order placed from here recently",
+        price: 50,
+        rating: "3.9",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+         qnty:0
+    },
+    {
+        id: 3,
+        dish: "Margherita Pizza",
+        imgdata: "https://b.zmtcdn.com/data/pictures/chains/1/19708611/10f90d4a69678d98662514d173b29665_o2_featured_v2.jpg",
+        address: "Pizza, Fast Food, Pasta",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: " 650 + order placed from here recently",
+        price: 70,
+        rating: "4.2",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+         qnty:0
+    },
+    {
+        id: 4,
+        dish: "Steamed Momos",
+        imgdata: "https://b.zmtcdn.com/data/pictures/chains/1/113401/59f29399060caefcc575d59dc9402ce8_o2_featured_v2.jpg",
+        address: "Momos",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: " 300 + order placed from here recently",
+        price: 70,
+        rating: "3.8",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+         qnty:0
+    },
+    {
+        id: 5,
+        dish: "Chole Kulche",
+        imgdata: "https://b.zmtcdn.com/data/pictures/chains/5/110225/3978e28854b7496dbef9496546734811_o2_featured_v2.jpg",
+        address: "North Indian",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: "1050 + order placed from here recently",
+        price: 210,
+        rating: "4.0",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+         qnty:0
+    },
+    {
+        id: 6,
+        dish: "Crispy Spring Rolls",
+        imgdata: "https://b.zmtcdn.com/data/pictures/5/113895/3c06f6fbb8f667a2537dfdb6f060dc8b_o2_featured_v2.jpg",
+        address: "Wraps FastFood, Chines",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: " 1100 + order placed from here recently",
+        price: 100,
+        rating: "3.8",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+         qnty:0
+    },
+    {
+        id: 7,
+        dish: "Chole Bhature",
+        imgdata: "https://b.zmtcdn.com/data/pictures/chains/5/110155/811c01a5430d50d3260f77917da99e12_o2_featured_v2.jpg",
+        address: "North Indian, Fast Food",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: "500 + order placed from here recently",
+        price: 300,
+        rating: "3.8",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+         qnty:0
+    },
+    {
+        id: 8,
+        dish: "Masala Chai",
+        imgdata: "https://b.zmtcdn.com/data/pictures/3/18514413/0a17b72e9fec52a3ca736f4c2ea3646f_o2_featured_v2.jpg",
+        address: "Tea, Coffee, Shake, Beverages",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: "500 + order placed from here recently",
+        price: 100,
+        rating: "3.2",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+         qnty:0
+    },
+    {
+        id: 9,
+        dish: "Chicken Frankie Roll",
+        imgdata: "https://b.zmtcdn.com/data/pictures/7/19639627/94c0a4cf15c02d3982d154e2c5dd8cbb_o2_featured_v2.jpg",
+        address: "Burger, Sandwich, Fast Food",
+        delimg: "https://b.zmtcdn.com/data/o2_assets/0b07ef18234c6fdf9365ad1c274ae0631612687510.png?output-format=webp",
+        somedata: "2525 + order placed from here recently",
+        price: 100,
+        rating: "3.8",
+        arrimg: "https://b.zmtcdn.com/data/o2_assets/4bf016f32f05d26242cea342f30d47a31595763089.png?output-format=webp",
+         qnty:0
+    },
+];
+
+export default Cardsdata;
+</file>
+
+<file path="client/src/components/cartstyle.css">
+@import url(https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css);
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+
+/* body {
+    background-color: #e0e3e8;
+    font-family: "Rubik", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #727E8C;
+} */
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    color: #475F7B;
+}
+/* 
+a, a:hover, a:focus {
+    text-decoration: none;
+    transition: 0.5s;
+    outline: none;
+} */
+
+/* ------------ */
+
+.card {
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 16%);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border: none;
+}
+.card-body {
+    padding: 30px;
+}
+.btn-primary {
+    border-color: #5a8dee !important;
+    background-color: #5a8dee !important;
+    color: #fff;
+}
+.btn-danger {
+    border-color: #FF2829!important;
+    background-color: #FF5B5C!important;
+    color: #FFF;
+}
+.form-submit{
+  padding: 13px 30px;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+}
+.card-header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.prdct-qty-container {
+    display: flex;
+    align-items: center;
+}
+
+.qty-input-box {
+    max-width: 70px;
+    padding: 0px 5px;
+    min-height: 40px;
+    border-radius: 4px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 5px;
+    color: #475F7B;
+    background-color: #FFF;
+    border: 1px solid #DFE3E7;
+    transition: 0.3s;
+}
+
+.qty-input-box:focus {
+    color: #475F7B;
+    background-color: #FFF;
+    border-color: #5A8DEE;
+    outline: 0;
+    box-shadow: 0 3px 8px 0 rgb(0 0 0 / 10%);
+}
+
+.prdct-qty-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background-color: #5a8dee2e;
+    color: #5a8dee;
+    font-size: 11px;
+    transition: 0.3s;
+}
+
+.prdct-qty-btn:hover {
+    background-color: #5a8dee;
+    color: #fff;
+}
+
+.product-img img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+.card-header-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.prdct-delete {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fde6e7;
+    color: #ff5b5c;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.prdct-delete:hover {
+    background-color: #ff5b5c;
+    color: #fff;
+}
+
+.cart-empty {
+    text-align: center;
+    padding: 30px;
+}
+
+.cart-empty i {
+    font-size: 45px;
+    color: #d5d6d8;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.cart-empty p {
+    margin-bottom: 0;
+    color: #bdbdbd;
+    font-size: 16px;
+}
+
+.cart-table td, .cart-table th {
+    vertical-align: middle;
+}
+</file>
+
+<file path="client/src/components/style.css">
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,600;0,700;1,400;1,600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,500&display=swap');
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.hove{
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.hove:hover{
+    box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+    transition: .2s;
+}
+
+.cd{
+    border-radius: 16px;
+    margin-top: 20px;
+    height: 16rem;
+}
+
+.upper_data h4{
+    font-size: 18px;
+    color: rgba(17,17,17,0.849);
+    letter-spacing: .5px;
+    font-weight: 500;
+}
+
+.upper_data span{
+    background-color: rgb(36,150,63);
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 2px 1px;
+    width: 45px;
+}
+
+.lower_data h5{
+    font-size: 15px;
+letter-spacing: .4px;
+font-weight: 400;
+color:rgba(17,17,17,0.849) ;
+}
+
+.lower_data span{
+    font-size: 15px;
+    letter-spacing: .4px;
+    color:rgba(17,17,17,0.849) ;
+}
+
+.extra{
+    border-bottom: 1px solid rgba(17,17,17,0.449);
+}
+
+.last_data .limg{
+    width: 18px;
+}
+
+.last_data p{
+    font-size: 14px;
+    margin-top: 18px;
+    letter-spacing: .2px;
+    color: rgba(17,17,17,0.849);
+}
+
+.last_data .laimg{
+    width: 45px;
+}
+
+#ex4 .p1[data-count]:after{
+    position:absolute;
+    right:10%;
+    top:8%;
+    content: attr(data-count);
+    font-size:40%;
+    padding:.2em;
+    border-radius:50%;
+    line-height:1em;
+    color: white;
+    background:rgba(255,0,0,.85);
+    text-align:center;
+    min-width: 18px;
+  }
+
+  #ex4 .fa-stack{
+    width: 1.5em;
+  }
+
+@media (max-width:600px){
+    .con{
+        flex-direction: column;
+        align-items: center;
+    }
+    .last_data p{
+        font-size: 12px;
+    }
+   
+}
+</file>
+
+<file path="client/src/components/Success.js">
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { emptycartIteam } from '../redux/features/cartSlice';
+
+const Success = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // SDET Logic: Clear Redux and LocalStorage immediately on successful landing
+        dispatch(emptycartIteam());
+        localStorage.removeItem("checkout_pending");
+    }, [dispatch]);
+
+    return (
+        <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
+            <div className="mb-8 flex items-center justify-center bg-emerald-50 rounded-full w-32 h-32">
+                <svg className="w-16 h-16 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <motion.path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={3}
+                        d="M5 13l4 4L19 7"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 1 }}
+                        transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+                    />
+                </svg>
+            </div>
+
+            <motion.div 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="text-center"
+            >
+                <h1 className="text-4xl font-black text-slate-900 mb-4">Order Confirmed!</h1>
+                <p className="text-slate-500 text-lg mb-10 max-w-sm mx-auto font-medium">
+                    Your kitchen-to-door journey has begun. We'll notify you when it's out for delivery.
+                </p>
+                <button 
+                    onClick={() => window.location.replace('/')}
+                    className="bg-slate-900 text-white font-bold px-10 py-4 rounded-full hover:bg-emerald-600 transition-all active:scale-95 shadow-xl hover:shadow-emerald-200"
+                    data-testid="success-home-btn"
+                >
+                    Return to Home
+                </button>
+            </motion.div>
+        </div>
+    );
+};
+
+export default Success;
+</file>
+
+<file path="client/src/redux/app/store.js">
+import { configureStore } from "@reduxjs/toolkit";
+import cartSlice from "../features/cartSlice";
+
+// create store
+export const store = configureStore({
+    reducer:{
+        allCart:cartSlice
+    }
+})
+</file>
+
+<file path="client/src/redux/features/cartSlice.js">
+import { createSlice } from "@reduxjs/toolkit";
+
+// Helper to load cart from LocalStorage
+const loadCart = () => {
+    const savedCart = localStorage.getItem("foodKart_cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+};
+
+const initialState = {
+    carts: loadCart() // Initialize from storage, not an empty array
+};
+
+const cartSlice = createSlice({
+    name: "cartslice",
+    initialState,
+    reducers: {
+        addToCart: (state, action) => {
+            const IteamIndex = state.carts.findIndex((iteam) => iteam.id === action.payload.id);
+            if (IteamIndex >= 0) {
+                state.carts[IteamIndex].qnty += 1;
+            } else {
+                state.carts.push({ ...action.payload, qnty: 1 });
+            }
+            // Sync to LocalStorage
+            localStorage.setItem("foodKart_cart", JSON.stringify(state.carts));
+        },
+
+        removeToCart: (state, action) => {
+            state.carts = state.carts.filter((ele) => ele.id !== action.payload);
+            localStorage.setItem("foodKart_cart", JSON.stringify(state.carts));
+        },
+
+        removeSingleIteams: (state, action) => {
+            const index = state.carts.findIndex((item) => item.id === action.payload.id);
+            if (state.carts[index].qnty > 1) {
+                state.carts[index].qnty -= 1;
+            } else {
+                state.carts = state.carts.filter((item) => item.id !== action.payload.id);
+            }
+            localStorage.setItem("foodKart_cart", JSON.stringify(state.carts));
+        },
+
+        emptycartIteam: (state) => {
+            state.carts = [];
+            localStorage.removeItem("foodKart_cart"); // Clear storage on success/manual clear
+        }
+    }
+});
+
+export const { addToCart, removeToCart, removeSingleIteams, emptycartIteam } = cartSlice.actions;
+export default cartSlice.reducer;
+</file>
+
+<file path="client/src/App.css">
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</file>
+
+<file path="client/src/App.test.js">
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+</file>
+
+<file path="client/src/index.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+</file>
+
+<file path="client/src/index.js">
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { BrowserRouter } from "react-router-dom"
+import { Provider } from 'react-redux';
+import { store } from './redux/app/store';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
+);
+</file>
+
+<file path="client/src/logo.svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3"><g fill="#61DAFB"><path d="M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z"/><circle cx="420.9" cy="296.5" r="45.7"/><path d="M520.5 78.1z"/></g></svg>
+</file>
+
+<file path="client/src/reportWebVitals.js">
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+</file>
+
+<file path="client/src/setupTests.js">
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+</file>
+
+<file path="client/package.json">
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "@stripe/stripe-js": "^8.3.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "framer-motion": "^12.38.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.30.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^3.4.19"
+  }
+}
+</file>
+
+<file path="client/postcss.config.js">
+module.exports = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+}
+</file>
+
+<file path="client/README.md">
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</file>
+
+<file path="client/tailwind.config.js">
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+</file>
+
+<file path="server/app.js">
+require('dotenv').config();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+app.use(express.json());
+app.use(cors());
+
+// checkout api
+app.post("/api/create-checkout-session", async(req,res)=>{
+    try{
+        const {products}= req.body;
+
+        // Validate products array
+        if (!products || !Array.isArray(products) || products.length === 0) {
+            return res.status(400).json({ error: "Products array is required and must not be empty." });
+        }
+
+        let totalAmount = 0;  // Track total in paise for validation
+
+        // Validate each product and calculate total
+        for (const product of products) {
+            if (!product.dish || typeof product.dish !== 'string') {
+                return res.status(400).json({ error: `Invalid or missing dish name for product: ${JSON.stringify(product)}` });
+            }
+            if (!product.price || typeof product.price !== 'number' || product.price <= 0 || !Number.isInteger(product.price)) {
+                return res.status(400).json({ error: `Price must be a positive integer greater than 0 (in INR). Invalid price for product: ${JSON.stringify(product)}` });
+            }
+            if (!product.qnty || typeof product.qnty !== 'number' || product.qnty <= 0 || !Number.isInteger(product.qnty)) {
+                return res.status(400).json({ error: `Quantity must be a positive integer greater than 0. Invalid quantity for product: ${JSON.stringify(product)}` });
+            }
+            totalAmount += (product.price * 100) * product.qnty;  // Convert to paise and add to total
+        }
+
+        // Stripe minimum: Total must be at least ~$0.50 USD
+        if (totalAmount < 5000) {
+            return res.status(400).json({ error: `Total amount must be at least 50 INR (5000 paise) to meet Stripe's minimum. Current total: ₹${(totalAmount / 100).toFixed(2)}.` });
+        }
+    
+        const lineItems = products.map((product)=>({
+            price_data:{
+                currency: "inr",
+                product_data:{
+                    name:product.dish
+                },
+                unit_amount: product.price*100,
+            },
+            quantity:product.qnty
+        }));
+
+        // --- PRODUCTION FIX: Dynamic Client URL ---
+        // Grabs the live URL from the hosting provider, falls back to local for testing
+        const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
+
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            line_items: lineItems,
+            mode: "payment",
+            success_url: `${CLIENT_URL}/success`,
+            cancel_url: `${CLIENT_URL}/cart?canceled=true`
+        });
+
+        res.json({url:session.url})
+    }
+    catch(error){
+        console.error("Error creating checkout session:", error);
+        res.status(500).json({ error: error.message });
+    }
+})
+
+// --- PRODUCTION FIX: Dynamic Port ---
+// Cloud hosts (like Render/Heroku) dynamically assign a port. You MUST listen to process.env.PORT.
+const PORT = process.env.PORT || 7000;
+
+app.listen(PORT, ()=>{
+    console.log(`======== SERVER STARTED ON PORT ${PORT} ========`);
+});
+</file>
+
+<file path="server/package.json">
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "stripe": "^19.3.0"
+  }
+}
+</file>
+
+<file path=".gitignore">
+# Master Root Ignore
+
+# Block ALL node_modules everywhere
+**/node_modules/
+
+# Block ALL environment files everywhere
+**/.env
+**/.env.*
+!**/.env.example
+
+# OS Files
+.DS_Store
+</file>
+
+<file path="package.json">
+{
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.0.0"
+  },
+  "dependencies": {
+    "react-scripts": "5.0.1"
+  }
+}
+</file>
+
+<file path="README.md">
+# FoodKart
+</file>
+
+<file path="client/public/index.html">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/soup.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Order the best local meals instantly with Food-Kart."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Food-Kart</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+</file>
+
+<file path="client/src/components/Headers.js">
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+const Headers = () => {
+    const { carts } = useSelector((state) => state.allCart);
+
+    return (
+        <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 h-20 flex items-center transition-all duration-300">
+            {/* BUG FIX: Changed justify-end to justify-between to space the Logo and Cart */}
+            <div className="container mx-auto px-6 flex justify-between items-center">
+                
+                {/* The "Home" Link - Using the Brand Logo as standard UX practice */}
+                <NavLink 
+                    to="/" 
+                    className="flex items-center gap-3 group decoration-transparent"
+                    data-testid="nav-home-link"
+                >
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 group-hover:bg-emerald-100 transition-colors">
+                        <i className="fa-solid fa-house text-slate-500 group-hover:text-emerald-600 transition-colors text-lg"></i>
+                    </div>
+                    <h1 className="text-2xl font-black text-slate-900 tracking-tighter group-hover:text-emerald-600 transition-colors m-0 hidden sm:block">
+                        FoodKart <span className="text-emerald-500">🍜</span>
+                    </h1>
+                </NavLink>
+
+                {/* Just the Cart Icon */}
+                <NavLink 
+                    to="/cart" 
+                    className="group relative p-3 text-slate-700 hover:text-emerald-600 transition-colors"
+                    data-testid="nav-cart-link"
+                >
+                    <i className="fa-solid fa-cart-shopping text-2xl"></i>
+                    
+                    {carts.length > 0 && (
+                        <span 
+                            className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-orange-500 text-[10px] font-bold text-white ring-2 ring-white shadow-sm"
+                            data-testid="cart-badge-count"
+                        >
+                            {carts.length}
+                        </span>
+                    )}
+                </NavLink>
+
+            </div>
+        </header>
+    );
+}
+
+export default Headers;
+</file>
+
+<file path="client/src/components/Home.js">
+import React, { useState } from 'react';
+import CardsData from "./CardData";
+import { addToCart } from '../redux/features/cartSlice';
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
+
+const Home = () => {
+    // Keep the source of truth intact
+    const [cartData] = useState(CardsData);
+    // New State: Track what the user is typing
+    const [searchQuery, setSearchQuery] = useState('');
+    const dispatch = useDispatch();
+
+    // The Engine: Filter data dynamically based on the search query
+    const filteredData = cartData.filter((item) =>
+        item.dish.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const send = (item) => {
+        dispatch(addToCart(item));
+        toast.success(`${item.dish} added to cart!`, {
+            style: {
+                borderRadius: '10px',
+                background: '#333',
+                color: '#fff',
+            },
+        });
+    };
+
+    return (
+        <main className="bg-white min-h-screen">
+            <section className="py-16 px-6 max-w-7xl mx-auto text-center">
+                <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-4">
+                    What's on your <span className="text-emerald-500">mind?</span>
+                </h2>
+                <p className="text-slate-500 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+                    Discover the best meals from top-rated local kitchens, delivered fresh to your doorstep.
+                </p>
+                
+                {/* Fully Wired Search Bar */}
+                <div className="mt-10 max-w-xl mx-auto relative group">
+                    <input 
+                        type="text" 
+                        placeholder="Search for dishes, cuisines..." 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full pl-12 pr-6 py-4 bg-slate-100 rounded-2xl border-none focus:ring-2 focus:ring-emerald-500 transition-all outline-none"
+                        data-testid="inventory-search"
+                    />
+                    <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors"></i>
+                </div>
+            </section>
+
+            <section className="max-w-7xl mx-auto px-6 pb-24">
+                {/* SDET Hook: Show a message if search finds nothing */}
+                {filteredData.length === 0 ? (
+                    <div className="text-center text-slate-500 py-10 text-xl font-bold">
+                        No dishes found matching "{searchQuery}" 🍜
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {/* We map over filteredData now, not cartData */}
+                        {filteredData.map((element, index) => (
+                            <div 
+                                key={index}
+                                className="group flex flex-col bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] transform hover:-translate-y-2"
+                                data-testid={`food-card-${index}`}
+                            >
+                                <div className="relative h-64 overflow-hidden">
+                                    <img 
+                                        src={element.imgdata} 
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                                        alt={element.dish}
+                                    />
+                                    <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm flex items-center gap-1">
+                                        <span className="text-sm font-bold text-slate-900">{element.rating}</span>
+                                        <i className="fa-solid fa-star text-yellow-500 text-[10px]"></i>
+                                    </div>
+                                </div>
+
+                                <div className="p-6 flex flex-col flex-1">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <h3 className="text-xl font-bold text-slate-900 leading-tight">
+                                            {element.dish}
+                                        </h3>
+                                        <span className="text-lg font-black text-slate-900">
+                                            ₹{element.price}
+                                        </span>
+                                    </div>
+                                    
+                                    <p className="text-slate-500 text-sm mb-6 flex-1">
+                                        {element.address}
+                                    </p>
+
+                                    <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                                        {/* BUG FIX: Changed -space-x-2 to gap-3 and added object-contain */}
+                                        <div className="flex gap-3 items-center">
+                                            <img src={element.arrimg} className="w-8 h-8 object-contain" alt="icon" />
+                                            <img src={element.delimg} className="w-8 h-8 object-contain" alt="delivery" />
+                                        </div>
+
+                                        <button 
+                                            onClick={() => send(element)}
+                                            className="px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-xl transition-all active:scale-95 hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-200"
+                                            data-testid={`add-to-cart-btn-${index}`}
+                                        >
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </section>
+        </main>
+    );
+}
+
+export default Home;
+</file>
+
+<file path="client/src/components/LandingPage.js">
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const LandingPage = () => {
+    const navigate = useNavigate();
+
+    return (
+        <div className="relative min-h-screen bg-slate-50 overflow-hidden flex flex-col font-sans">
+            
+            {/* The "Not A Nav Link" App Name */}
+            <div className="absolute top-0 left-0 w-full p-6 z-20">
+                <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tighter cursor-default">
+                    FoodKart <span className="text-emerald-500">🍜</span>
+                </h1>
+            </div>
+
+            {/* Main Interactive Banner Area */}
+            <div className="flex-1 flex flex-col md:flex-row items-center justify-center container mx-auto px-6 pt-24 md:pt-0">
+                
+                {/* Left Side: Typography & CTA */}
+                <div className="md:w-1/2 flex flex-col items-start space-y-6 z-10">
+                    
+                    {/* Animated Badge */}
+                    <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-sm tracking-wide animate-bounce shadow-sm">
+                        🚀 Lightning Fast Delivery
+                    </div>
+                    
+                    <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight">
+                        Feeling <br/><span className="text-emerald-500 drop-shadow-md">Hungry!!</span>
+                    </h2>
+                    
+                    <p className="text-lg text-slate-500 max-w-md font-medium">
+                        Get your favourite foods delivered hot and fresh with just a few clicks.
+                    </p>
+                    
+                    {/* Advanced CTA Button with fill animation */}
+                    <button 
+                        onClick={() => navigate('/menu')}
+                        className="group relative px-8 py-4 bg-slate-900 text-white font-bold text-lg rounded-full overflow-hidden shadow-2xl hover:shadow-emerald-500/30 transition-all duration-300 transform hover:-translate-y-1"
+                        data-testid="landing-cta-button"
+                    >
+                        <span className="relative z-10 flex items-center">
+                            Order Now
+                            <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </span>
+                        {/* Green hover background fill */}
+                        <div className="absolute inset-0 h-full w-full bg-emerald-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </button>
+                </div>
+
+                {/* Right Side: Animated Visuals */}
+                <div className="md:w-1/2 mt-16 md:mt-0 relative flex justify-center items-center w-full">
+                    {/* Glowing Background Blob */}
+                    <div className="absolute w-64 h-64 md:w-96 md:h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+                    
+                    {/* The Hero Image (Floating Effect) */}
+                    <img 
+                        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" 
+                        alt="Delicious Burger Banner" 
+                        className="relative z-10 w-[90%] max-w-md rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500 hover:rotate-2"
+                        data-testid="landing-banner-image"
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default LandingPage;
+</file>
+
+<file path="client/src/App.js">
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import Headers from './components/Headers';
+import LandingPage from './components/LandingPage';
+import Home from './components/Home';
+import CartDetails from './components/CartDetails';
+import Success from './components/Success';
+import Cancel from './components/Cancel';
+import { Toaster } from 'react-hot-toast';
+import './App.css';
+
+function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Dynamically update the document title based on the current route
+    switch (location.pathname) {
+      case '/':
+        document.title = "Food-Kart | Best Meals in Town";
+        break;
+      case '/menu':
+        document.title = "Explore Menus | Food-Kart"; 
+        break;
+      case '/cart':
+        document.title = "Checkout Your Cart | Food-Kart";
+        break;
+      case '/success':
+        document.title = "Order Confirmed | Food-Kart";
+        break;
+      case '/cancel':
+        document.title = "Payment Cancelled | Food-Kart";
+        break;
+      default:
+        document.title = "Food-Kart"; // Fallback for 404s or unmapped routes
+    }
+  }, [location.pathname]);
+
+  return (
+    <>
+      {/* Logic: Hide Header ONLY on the root Landing Page */}
+      {location.pathname !== '/' && <Headers />}
+      
+      <Routes>
+        <Route path='/' element={<LandingPage />} />
+        <Route path='/menu' element={<Home />} />
+        <Route path='/cart' element={<CartDetails />} />
+        <Route path='/success' element={<Success />} />
+        <Route path='/cancel' element={<Cancel />} />
+      </Routes>
+      
+      <Toaster />
+    </>
+  );
+}
+
+export default App;
+</file>
+
+<file path="client/src/components/CartDetails.js">
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeToCart,
+  removeSingleIteams,
+  emptycartIteam,
+} from "../redux/features/cartSlice";
+import toast from "react-hot-toast";
+import { useNavigate, useLocation } from "react-router-dom";
+
+const CartDetails = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { carts } = useSelector((state) => state.allCart);
+
+  const [totalprice, setPrice] = useState(0);
+  const [totalquantity, setTotalQuantity] = useState(0);
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+
+  // --- LOGIC 1: THE TOAST ENGINE (WITH BFCACHE SUPPORT) ---
+  useEffect(() => {
+    const handlePaymentInterruption = () => {
+      const queryParams = new URLSearchParams(location.search);
+      const stripeCanceled = queryParams.get("canceled");
+      const manualBack = localStorage.getItem("checkout_pending");
+
+      if (stripeCanceled === "true" || manualBack === "true") {
+        setTimeout(() => {
+          toast.error("Payment was interrupted. Your items are still here!", {
+            icon: "⚠️",
+            duration: 4000,
+            position: "top-center",
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        }, 100);
+
+        // CLEANUP
+        localStorage.removeItem("checkout_pending");
+
+        if (stripeCanceled === "true") {
+          navigate("/cart", { replace: true });
+        }
+      }
+    };
+
+    // Trigger 1: Normal React component mount/update
+    handlePaymentInterruption();
+
+    // Trigger 2: Browser Back Button (Page restored from BFCache)
+    const onPageShow = (event) => {
+      if (event.persisted) {
+        console.log(
+          "Page restored from BFCache. Checking for pending checkouts...",
+        );
+        handlePaymentInterruption();
+      }
+    };
+
+    window.addEventListener("pageshow", onPageShow);
+
+    return () => {
+      window.removeEventListener("pageshow", onPageShow);
+    };
+  }, [location.search, navigate]);
+
+  // --- LOGIC 2: CALCULATION ENGINE ---
+  useEffect(() => {
+    let price = 0;
+    let quantity = 0;
+    carts.forEach((ele) => {
+      price += ele.price * ele.qnty;
+      quantity += ele.qnty;
+    });
+    setPrice(price);
+    setTotalQuantity(quantity);
+  }, [carts]);
+
+  // --- LOGIC 3: ACTION HANDLERS ---
+  const handleIncrement = (e) => dispatch(addToCart(e));
+  const handleQuantityDecrease = (e) => dispatch(removeSingleIteams(e));
+  const handleFullRemove = (id) => {
+    dispatch(removeToCart(id));
+    toast.success("Item removed from your cart");
+  };
+  const emptycart = () => {
+    dispatch(emptycartIteam());
+    toast.success("Your cart is now empty");
+  };
+
+  const makePayment = async () => {
+    if (carts.length === 0) return;
+    setIsCheckoutLoading(true);
+
+    try {
+      localStorage.setItem("checkout_pending", "true");
+
+      const API_URL =
+        process.env.REACT_APP_BACKEND_URL || "http://localhost:7000";
+
+      const response = await fetch(`${API_URL}/api/create-checkout-session`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ products: carts }),
+      });
+
+      const session = await response.json();
+      if (session.url) {
+        window.location.href = session.url;
+      } else {
+        localStorage.removeItem("checkout_pending");
+        toast.error("Failed to reach Stripe");
+        setIsCheckoutLoading(false);
+      }
+    } catch (error) {
+      localStorage.removeItem("checkout_pending");
+      toast.error("Connection Error ❎");
+      setIsCheckoutLoading(false);
+    }
+  };
+
+  // --- UI RENDER ---
+  return (
+    <main className="bg-slate-50 min-h-screen py-12 px-4 md:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Cart Header */}
+        <div className="flex justify-between items-end mb-8">
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+            Your Cart{" "}
+            <span className="text-emerald-500">
+              {carts.length > 0 ? `(${carts.length})` : ""}
+            </span>
+          </h2>
+          {carts.length > 0 && (
+            <button
+              onClick={emptycart}
+              className="text-red-500 font-bold hover:bg-red-50 px-4 py-2 rounded-xl transition-colors flex items-center gap-2"
+              data-testid="empty-cart-btn"
+            >
+              <i className="fa-solid fa-trash-can"></i> Clear All
+            </button>
+          )}
+        </div>
+
+        {carts.length === 0 ? (
+          /* Empty State UX */
+          <div className="bg-white rounded-3xl shadow-sm p-12 text-center flex flex-col items-center justify-center min-h-[50vh]">
+            <div className="w-48 h-48 bg-slate-50 rounded-full flex items-center justify-center mb-6">
+              <i className="fa-solid fa-cart-shopping text-6xl text-slate-300"></i>
+            </div>
+            <h3 className="text-2xl font-bold text-slate-900 mb-2">
+              Your cart is feeling light!
+            </h3>
+            <p className="text-slate-500 mb-8 max-w-md">
+              Looks like you haven't added anything to your cart yet. Let's get
+              some delicious food in here.
+            </p>
+            <button
+              onClick={() => navigate("/menu")}
+              className="bg-emerald-500 text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-emerald-600 hover:shadow-lg transition-all active:scale-95"
+              data-testid="back-to-menu-btn"
+            >
+              Explore Menu
+            </button>
+          </div>
+        ) : (
+          /* Active Cart Layout */
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left Side: Items List */}
+            <div className="flex-1 bg-white rounded-3xl shadow-sm overflow-hidden border border-slate-100">
+              <ul className="divide-y divide-slate-100">
+                {carts.map((data, index) => (
+                  <li
+                    key={index}
+                    className="p-6 flex flex-col sm:flex-row items-center gap-6 group hover:bg-slate-50 transition-colors"
+                    data-testid={`cart-item-${index}`}
+                  >
+                    {/* Product Image */}
+                    <div className="w-24 h-24 rounded-2xl overflow-hidden shrink-0 shadow-inner">
+                      <img
+                        src={data.imgdata}
+                        alt={data.dish}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Product Details */}
+                    <div className="flex-1 text-center sm:text-left">
+                      <h4 className="text-xl font-bold text-slate-900 mb-1">
+                        {data.dish}
+                      </h4>
+                      <p className="text-slate-500 font-medium">
+                        ₹{data.price}{" "}
+                        <span className="text-sm font-normal">/ item</span>
+                      </p>
+                    </div>
+
+                    {/* Quantity Controls */}
+                    <div className="flex items-center gap-4 bg-slate-100 p-2 rounded-xl">
+                      <button
+                        className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition-all"
+                        onClick={
+                          data.qnty <= 1
+                            ? () => handleFullRemove(data.id)
+                            : () => handleQuantityDecrease(data)
+                        }
+                        data-testid={`decrease-qty-${index}`}
+                      >
+                        <i className="fa-solid fa-minus text-xs"></i>
+                      </button>
+                      <span
+                        className="w-6 text-center font-bold text-slate-900"
+                        data-testid={`item-qty-${index}`}
+                      >
+                        {data.qnty}
+                      </span>
+                      <button
+                        className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 transition-all"
+                        onClick={() => handleIncrement(data)}
+                        data-testid={`increase-qty-${index}`}
+                      >
+                        <i className="fa-solid fa-plus text-xs"></i>
+                      </button>
+                    </div>
+
+                    {/* Item Total & Delete */}
+                    <div className="flex items-center justify-end gap-2 sm:gap-4 w-full sm:w-auto mt-4 sm:mt-0">
+                      <span
+                        className="text-xl font-black text-slate-900 min-w-[80px] text-right"
+                        data-testid={`item-total-${index}`}
+                      >
+                        ₹{data.qnty * data.price}
+                      </span>
+                      <button
+                        className="text-slate-300 hover:text-red-500 transition-all w-9 h-9 flex items-center justify-center rounded-full hover:bg-red-50"
+                        onClick={() => handleFullRemove(data.id)}
+                        data-testid={`delete-item-${index}`}
+                      >
+                        <i className="fa-solid fa-trash text-sm"></i>
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right Side: Order Summary */}
+            <div className="w-full lg:w-96">
+              <div className="bg-slate-900 rounded-3xl p-8 text-white sticky top-28 shadow-2xl">
+                <h3 className="text-2xl font-bold mb-6 border-b border-slate-700 pb-4">
+                  Order Summary
+                </h3>
+
+                <div className="space-y-4 mb-6">
+                  <div className="flex justify-between items-center text-slate-300">
+                    <span>Total Items</span>
+                    <span
+                      className="font-bold text-white"
+                      data-testid="summary-total-items"
+                    >
+                      {totalquantity}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center text-slate-300">
+                    <span>Delivery Fee</span>
+                    <span className="text-emerald-400 font-bold">Free</span>
+                  </div>
+                </div>
+
+                <div className="border-t border-slate-700 pt-6 mb-8 flex justify-between items-end">
+                  <div>
+                    <p className="text-slate-400 text-sm mb-1">Total Amount</p>
+                    <p
+                      className="text-3xl font-black text-white"
+                      data-testid="summary-total-price"
+                    >
+                      ₹{totalprice}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={makePayment}
+                  disabled={isCheckoutLoading}
+                  className={`w-full text-white font-bold text-lg py-4 rounded-xl transition-all flex justify-center items-center gap-2 group ${
+                    isCheckoutLoading
+                      ? "bg-emerald-400 cursor-not-allowed opacity-80"
+                      : "bg-emerald-500 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] active:scale-95"
+                  }`}
+                  data-testid="checkout-btn"
+                >
+                  {isCheckoutLoading ? (
+                    <>
+                      <i className="fa-solid fa-circle-notch fa-spin"></i>
+                      Connecting to Stripe...
+                    </>
+                  ) : (
+                    <>
+                      Proceed to Checkout
+                      <i className="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
+  );
+};
+
+export default CartDetails;
+</file>
+
+</files>
