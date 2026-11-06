@@ -318,5 +318,5 @@ const styles = StyleSheet.create({
   modalHeader: { height: 54, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16, borderBottomWidth: 1, borderBottomColor: "#e2e8f0" },
   modalTitle: { fontSize: 16, fontWeight: "700", color: "#0f172a" },
   modalCloseButton: { padding: 4 },
-  webviewLoader: { ...StyleSheet.absoluteFillObject, alignItems: "center", justifyContent: "center", backgroundColor: "#ffffff" },
+  webviewLoader: { ...StyleSheet.absoluteFill, alignItems: "center", justifyContent: "center", backgroundColor: "#ffffff" },
 });
